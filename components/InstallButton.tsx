@@ -42,12 +42,39 @@ const BROWSER_META: Record<string, BrowserMeta> = {
 
 export function InstallButton({ size = "lg", className = "" }: Props) {
   const browser = useBrowser();
-  const meta = BROWSER_META[browser] ?? BROWSER_META.other;
 
   const sizeClasses =
     size === "sm"
       ? "px-4 py-1.5 h-auto text-[13px] rounded-lg"
       : "px-6 py-3 h-auto text-[14px] rounded-xl";
+
+  // Skeleton: matches the real button's exact padding/radius so there is
+  // zero layout shift when the real button appears.
+  if (!browser) {
+    return (
+      <div
+        className={`inline-flex items-center gap-2 ${sizeClasses} ${className} bg-[#e5e5e0] animate-pulse`}
+        aria-hidden="true"
+      >
+        {/* icon placeholder — matches 16×16 icon */}
+        <span className="w-4 h-4 shrink-0 rounded bg-[#d1d1cc]" />
+        {/* label placeholder */}
+        <span
+          className={`bg-[#d1d1cc] rounded ${
+            size === "sm" ? "w-[72px] h-[13px]" : "w-[88px] h-[14px]"
+          }`}
+        />
+        {/* "— Free" placeholder */}
+        <span
+          className={`bg-[#d1d1cc] rounded ${
+            size === "sm" ? "w-7 h-[11px]" : "w-8 h-3"
+          }`}
+        />
+      </div>
+    );
+  }
+
+  const meta = BROWSER_META[browser] ?? BROWSER_META.other;
 
   return (
     <Button

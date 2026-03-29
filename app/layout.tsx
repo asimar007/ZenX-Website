@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+
+// next/font self-hosts the font at build time and injects a <link rel="preload">
+// into the HTML — font is available from the very first paint, zero FOUT.
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: "400",
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: "Tweet Filter — Filter out the noise on Twitter",
@@ -17,19 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={cn("font-sans", geist.variable, instrumentSerif.variable)}
+    >
       <body>{children}</body>
     </html>
   );

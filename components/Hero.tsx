@@ -22,8 +22,7 @@ export function Hero() {
       {/* Headline */}
       <div className="afu d1 text-center max-w-2xl mx-auto">
         <h1
-          className="text-5xl md:text-6xl leading-[1.08] tracking-tight mb-6"
-          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+          className="font-serif text-5xl md:text-6xl leading-[1.08] tracking-tight mb-6"
         >
           Your Twitter feed,
           <br />
@@ -71,8 +70,7 @@ export function Hero() {
           ].map(([num, label]) => (
             <div key={label} className="text-center">
               <div
-                className="text-xl font-semibold tracking-tight"
-                style={{ fontFamily: "'Instrument Serif', serif" }}
+                className="font-serif text-xl font-semibold tracking-tight"
               >
                 {num}
               </div>
