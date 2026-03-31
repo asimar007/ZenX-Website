@@ -1,8 +1,9 @@
 "use client";
-import { useBrowser } from "@/lib/useBrowser";
+import { useBrowser, type BrowserName } from "@/lib/useBrowser";
 import { Button } from "@/components/ui/button";
 import BraveIcon from "./icons/Brave";
 import ChromeIcon from "./icons/Chrome";
+import EdgeIcon from "./icons/Edge";
 import { Download } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -14,28 +15,39 @@ interface Props {
 interface BrowserMeta {
   label: string;
   icon: ReactNode;
+  href: string;
   bg: string;
   hover: string;
 }
 
-const STORE_URL = "https://chrome.google.com/webstore";
+const CHROME_STORE_URL = "https://chrome.google.com/webstore";
 
-const BROWSER_META: Record<string, BrowserMeta> = {
+const BROWSER_META: Record<BrowserName, BrowserMeta> = {
   chrome: {
     label: "Add to Chrome",
     icon: <ChromeIcon width={16} height={16} />,
+    href: CHROME_STORE_URL,
     bg: "bg-[#4285F4]",
     hover: "hover:bg-[#3367d6]",
   },
   brave: {
     label: "Add to Brave",
     icon: <BraveIcon width={16} height={16} />,
+    href: CHROME_STORE_URL,
     bg: "bg-[#FF5500]",
     hover: "hover:bg-[#e04d00]",
+  },
+  edge: {
+    label: "Add to Microsoft Edge",
+    icon: <EdgeIcon width={16} height={16} />,
+    href: CHROME_STORE_URL,
+    bg: "bg-[#0A76D5]",
+    hover: "hover:bg-[#0866b8]",
   },
   other: {
     label: "Add to Browser",
     icon: <Download size={16} />,
+    href: CHROME_STORE_URL,
     bg: "bg-[#1a1a18]",
     hover: "hover:bg-[#2d2d2b]",
   },
@@ -80,7 +92,7 @@ export function InstallButton({ size = "lg", className = "" }: Props) {
       asChild
       className={`font-medium text-white active:scale-[0.98] ${meta.bg} ${meta.hover} ${sizeClasses} ${className}`}
     >
-      <a href={STORE_URL} target="_blank" rel="noopener noreferrer">
+      <a href={meta.href} target="_blank" rel="noopener noreferrer">
         {meta.icon}
         <span>{meta.label}</span>
         <span className="opacity-50 font-normal text-[12px]">— Free</span>

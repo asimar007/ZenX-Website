@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export type BrowserName = "chrome" | "brave" | "other";
+export type BrowserName = "chrome" | "brave" | "edge" | "other";
 
 function isMobileDevice(): boolean {
   if (typeof navigator === "undefined") return false;
@@ -21,6 +21,7 @@ export function useBrowser(): BrowserName | null {
 
     const detect = async (): Promise<BrowserName> => {
       if (!navigator.userAgent.includes("Chrome/")) return "other";
+      if (navigator.userAgent.includes("Edg/")) return "edge";
 
       const nav = navigator as Navigator & {
         brave?: { isBrave: () => Promise<boolean> };
