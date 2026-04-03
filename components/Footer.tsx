@@ -7,14 +7,12 @@ export function Footer() {
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Image
-            src="/icon.png"
+            src="/ZenX.png"
             alt="ZenX"
-            width={32}
+            width={80}
             height={32}
-            className="shrink-0"
-            style={{ width: 32, height: 32 }}
+            className="object-contain shrink-0"
           />
-          <span className="text-[13px] font-semibold tracking-tight">ZenX</span>
           <span className="text-[12px] text-[#9ca3af] ml-2">
             © {new Date().getFullYear()} · Made for a calmer internet
           </span>

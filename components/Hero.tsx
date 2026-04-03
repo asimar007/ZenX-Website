@@ -21,9 +21,7 @@ export function Hero() {
 
       {/* Headline */}
       <div className="afu d1 text-center max-w-2xl mx-auto">
-        <h1
-          className="font-serif text-5xl md:text-6xl leading-[1.08] tracking-tight mb-6"
-        >
+        <h1 className="font-serif text-5xl md:text-6xl leading-[1.08] tracking-tight mb-6">
           Your Twitter feed,
           <br />
           <em className="not-italic text-[#6b7280]">finally peaceful.</em>
@@ -64,14 +62,12 @@ export function Hero() {
         <div className="flex items-center justify-center gap-6 pt-12">
           {[
             ["200+", "keywords blocked"],
-            ["5", "filter categories"],
+            ["5+", "filter categories"],
             ["0", "data collected"],
             ["100%", "local processing"],
           ].map(([num, label]) => (
             <div key={label} className="text-center">
-              <div
-                className="font-serif text-xl font-semibold tracking-tight"
-              >
+              <div className="font-serif text-xl font-semibold tracking-tight">
                 {num}
               </div>
               <div className="text-[11px] text-[#9ca3af] uppercase tracking-wider mt-0.5">

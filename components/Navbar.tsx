@@ -24,7 +24,6 @@ export function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="bg-white/70 backdrop-blur-xl border-b border-[#e5e5e0]/80 shadow-sm shadow-black/[0.03]">
         <nav className="max-w-5xl mx-auto px-6 h-15 flex items-center justify-between gap-6">
-
           {/* Logo */}
           <Link href="/" className="group shrink-0 flex items-center">
             <Image
@@ -32,8 +31,7 @@ export function Navbar() {
               alt="ZenX"
               width={80}
               height={32}
-              className="h-11 w-auto object-contain group-hover:opacity-80 transition-opacity"
-              style={{ width: "auto" }}
+              className="object-contain group-hover:opacity-80 transition-opacity"
               priority
             />
           </Link>
@@ -78,8 +76,7 @@ export function Navbar() {
                       alt="ZenX"
                       width={80}
                       height={32}
-                      className="h-9 w-auto object-contain"
-                      style={{ width: "auto" }}
+                      className="object-contain"
                     />
                   </SheetTitle>
                 </SheetHeader>
@@ -101,7 +98,6 @@ export function Navbar() {
               </SheetContent>
             </Sheet>
           </div>
-
         </nav>
       </div>
     </header>
