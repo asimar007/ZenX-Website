@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧘‍♂️ ZenX Website
 
-## Getting Started
+Welcome to the open-source repository for the **[ZenX](https://github.com/asimar007/GenX)** landing page. ZenX is a browser extension that makes your X (formerly Twitter) feed peaceful again by automatically hiding politics, hate speech, news, and controversy.
 
-First, run the development server:
+This repository exclusively contains the code for the marketing website/landing page.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![ZenX Banner](public/ZenX.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ About ZenX
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ZenX gives you control over your social media diet. The extension blocks tweets, cleans up trends, and allows custom keyword filtering — all without communicating with external servers or collecting your data.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **200+** Keywords Blocked by default
 
-## Learn More
+- **5+** Different Filter Categories
 
-To learn more about Next.js, take a look at the following resources:
+- **0** Data Collected
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **100%** Local Processing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can view the extension's source code here: [ZenX Chrome Extension](#link)
