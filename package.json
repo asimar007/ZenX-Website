@@ -1,6 +1,21 @@
 {
   "name": "zenx-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "ZenX — Filter out the noise on X. Automatically hides political arguments, hate speech, war news, and controversy from your feed.",
+  "author": "Asim <https://asimsk.site>",
+  "homepage": "https://zenx.asimsk.site",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asimar007/ZenX.git"
+  },
+  "keywords": [
+    "zenx",
+    "x",
+    "twitter",
+    "browser-extension",
+    "content-filter",
+    "nextjs"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev",

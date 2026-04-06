@@ -11,7 +11,7 @@ export function Footer() {
             alt="ZenX"
             width={80}
             height={32}
-            className="object-contain shrink-0"
+            className="object-contain shrink-0 mix-blend-multiply"
           />
           <span className="text-[12px] text-[#9ca3af] ml-2">
             © {new Date().getFullYear()} · Made for a calmer internet
@@ -25,7 +25,7 @@ export function Footer() {
               href: "https://github.com/asimar007/ZenX.git",
             },
             { label: "Privacy", href: "#" },
-            { label: "Chrome Store", href: "#" },
+            { label: "Download", href: "https://github.com/asimar007/ZenX/releases/tag/v1.0.0" },
           ].map((l) => (
             <Link
               key={l.label}

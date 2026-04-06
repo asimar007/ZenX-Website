@@ -31,7 +31,7 @@ export function Navbar() {
               alt="ZenX"
               width={80}
               height={32}
-              className="object-contain group-hover:opacity-80 transition-opacity"
+              className="object-contain mix-blend-multiply group-hover:opacity-80 transition-opacity"
               priority
             />
           </Link>
@@ -76,7 +76,7 @@ export function Navbar() {
                       alt="ZenX"
                       width={80}
                       height={32}
-                      className="object-contain"
+                      className="object-contain mix-blend-multiply"
                     />
                   </SheetTitle>
                 </SheetHeader>

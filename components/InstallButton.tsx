@@ -20,7 +20,7 @@ interface BrowserMeta {
   hover: string;
 }
 
-const CHROME_STORE_URL = "https://chrome.google.com/webstore";
+const CHROME_STORE_URL = "https://github.com/asimar007/ZenX/releases/tag/v1.0.0";
 
 const BROWSER_META: Record<BrowserName, BrowserMeta> = {
   chrome: {
