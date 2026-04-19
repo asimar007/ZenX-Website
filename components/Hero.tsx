@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { InstallButton } from "./InstallButton";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -15,7 +16,7 @@ export function Hero() {
           className="px-3 py-1 h-auto rounded-full text-[12px] text-[#6b7280] bg-white/60 border-[#e5e5e0] gap-2"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
-          Free & Open Source — v1.0
+          Free & Open Source — v1.0.1
         </Badge>
       </div>
 
@@ -56,8 +57,25 @@ export function Hero() {
         </p>
       </div>
 
+      {/* ProductHunt Badge */}
+      <div className="afu d3 flex justify-center mt-8">
+        <a
+          href="https://www.producthunt.com/products/zenx?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-zenx"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            alt="ZenX - Your Twitter feed, finally peaceful | Product Hunt"
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1118847&theme=light&t=1776568735676"
+            width={250}
+            height={54}
+            className="hover:opacity-80 transition-opacity"
+          />
+        </a>
+      </div>
+
       {/* Social proof */}
-      <div className="afu d3 mt-12">
+      <div className="afu d4 mt-12">
         <Separator className="bg-[#e5e5e0]" />
         <div className="flex items-center justify-center gap-6 pt-12">
           {[
