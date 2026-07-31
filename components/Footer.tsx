@@ -16,9 +16,9 @@ export function Footer() {
           <Image
             src="/ZenX.png"
             alt="ZenX"
-            width={80}
-            height={32}
-            className="object-contain shrink-0 mix-blend-multiply"
+            width={658}
+            height={426}
+            className="h-8 w-auto shrink-0 mix-blend-multiply"
           />
           <span className="text-[12px] text-[#9ca3af] ml-2">
             © {new Date().getFullYear()} · Made for a calmer internet
@@ -32,7 +32,7 @@ export function Footer() {
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[12px] text-[#9ca3af] hover:text-[#6b7280] transition-colors"
+              className="text-[12px] text-[#9ca3af] hover:text-[#6b7280] transition-colors py-2"
             >
               {l.label}
             </a>

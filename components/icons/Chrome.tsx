@@ -126,7 +126,7 @@ export default function ChromeIcon(props: SVGProps<SVGSVGElement>) {
       </linearGradient>
       <path
         fill={`url(#${id}-g)`}
-        d="M119.602 36.508H63.595a27.727 10.537l35.491-8.873"
+        d="M119.602 36.508H63.595a27.727 27.727 0 0121.626 10.537l35.491-8.873"
       />
     </svg>
   );

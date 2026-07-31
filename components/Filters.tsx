@@ -55,12 +55,7 @@ export function Filters() {
     >
       <div className="max-w-5xl mx-auto">
         <div className="mb-14">
-          <p className="text-[11px] font-medium uppercase tracking-widest text-[#9ca3af] mb-3">
-            Filter Categories
-          </p>
-          <h2
-            className="font-serif text-3xl md:text-4xl tracking-tight"
-          >
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight">
             5 categories. <span className="text-[#9ca3af]">200+ keywords.</span>
           </h2>
         </div>

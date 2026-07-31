@@ -36,12 +36,7 @@ export function Features() {
     <section id="features" className="py-24 px-6 border-t border-[#e5e5e0]">
       <div className="max-w-5xl mx-auto">
         <div className="mb-14">
-          <p className="text-[11px] font-medium uppercase tracking-widest text-[#9ca3af] mb-3">
-            Why ZenX
-          </p>
-          <h2
-            className="font-serif text-3xl md:text-4xl tracking-tight"
-          >
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight">
             Built for your peace of mind.
           </h2>
         </div>

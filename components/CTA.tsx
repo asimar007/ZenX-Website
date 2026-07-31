@@ -18,7 +18,7 @@ export function CTA() {
         <InstallButton size="lg" />
 
         <p className="mt-4 text-[12px] text-[#9ca3af]">
-          Works on Chrome &middot; Brave &middot;Microsoft Edge
+          Works on Chrome &middot; Brave &middot; Microsoft Edge
         </p>
       </div>
     </section>

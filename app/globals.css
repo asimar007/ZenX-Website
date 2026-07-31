@@ -18,7 +18,8 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --border: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  /* Ink, not gray: the focus ring has to read on the #fafaf8 page. */
+  --ring: #1a1a18;
   --radius: 0.625rem;
 }
 
@@ -46,10 +47,16 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* One visible keyboard-focus treatment for every control on the page. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
   html {
     @apply font-sans;

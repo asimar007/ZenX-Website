@@ -15,7 +15,7 @@ export function Hero() {
       <div className="flex justify-center mb-8">
         <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#e5e5e0] bg-white/60 text-[12px] text-[#6b7280]">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Free &amp; Open Source — v1.0.1
+          Free &amp; Open Source — v1.0.0
         </span>
       </div>
 
@@ -34,13 +34,13 @@ export function Hero() {
 
       {/* CTA */}
       <div className="flex flex-col items-center gap-3 mt-10">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
           <InstallButton size="lg" />
           <a
             href="https://github.com/asimar007/ZenX.git"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 text-[14px] font-medium rounded-xl border border-[#e5e5e0] text-[#6b7280] hover:text-[#1a1a18] hover:bg-white transition-colors"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap px-6 py-3 text-[14px] font-medium rounded-xl border border-[#e5e5e0] text-[#6b7280] hover:text-[#1a1a18] hover:bg-white transition-colors"
           >
             <GithubIcon width={16} height={16} />
             <span>View on GitHub</span>
@@ -73,7 +73,7 @@ export function Hero() {
       {/* Social proof */}
       <div className="mt-12">
         <div className="h-px bg-[#e5e5e0]" />
-        <div className="flex items-center justify-center gap-6 pt-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8 pt-12 max-w-md sm:max-w-none mx-auto">
           {STATS.map(([num, label]) => (
             <div key={label} className="text-center">
               <div className="font-serif text-xl font-semibold tracking-tight">

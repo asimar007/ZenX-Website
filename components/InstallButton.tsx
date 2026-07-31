@@ -42,13 +42,13 @@ export function InstallButton({ size = "lg" }: { size?: "sm" | "lg" }) {
       href={DOWNLOAD_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 font-medium text-white transition-colors active:scale-[0.98] ${bg} ${
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium text-white transition-colors active:scale-[0.98] ${bg} ${
         size === "sm"
           ? "px-4 py-1.5 text-[13px] rounded-lg"
           : "px-6 py-3 text-[14px] rounded-xl"
       }`}
     >
-      <Icon width={16} height={16} />
+      <Icon width={16} height={16} className="shrink-0" />
       <span>{label}</span>
       <span className="opacity-50 font-normal text-[12px]">— Free</span>
     </a>

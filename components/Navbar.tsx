@@ -18,9 +18,9 @@ export function Navbar() {
             <Image
               src="/ZenX.png"
               alt="ZenX"
-              width={80}
-              height={32}
-              className="object-contain mix-blend-multiply group-hover:opacity-80 transition-opacity"
+              width={658}
+              height={426}
+              className="h-12 w-auto mix-blend-multiply group-hover:opacity-80 transition-opacity"
               priority
             />
           </Link>
@@ -46,7 +46,7 @@ export function Navbar() {
 
             {/* Mobile drawer */}
             <Dialog.Root>
-              <Dialog.Trigger className="md:hidden inline-flex items-center justify-center size-7 rounded-lg text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] transition-colors">
+              <Dialog.Trigger className="md:hidden inline-flex items-center justify-center -mr-2 size-11 rounded-lg text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] transition-colors">
                 <Menu className="size-4" />
                 <span className="sr-only">Open menu</span>
               </Dialog.Trigger>
@@ -62,13 +62,13 @@ export function Navbar() {
                     <Image
                       src="/ZenX.png"
                       alt="ZenX"
-                      width={80}
-                      height={32}
-                      className="object-contain mix-blend-multiply"
+                      width={658}
+                      height={426}
+                      className="h-12 w-auto mix-blend-multiply"
                     />
                   </Dialog.Title>
 
-                  <Dialog.Close className="absolute top-4 right-4 inline-flex items-center justify-center size-7 rounded-lg text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] transition-colors">
+                  <Dialog.Close className="absolute top-2.5 right-2.5 inline-flex items-center justify-center size-11 rounded-lg text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] transition-colors">
                     <X className="size-4" />
                     <span className="sr-only">Close menu</span>
                   </Dialog.Close>

@@ -83,7 +83,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${geist.variable} ${instrumentSerif.variable}`}>
-      <body>{children}</body>
+      {/* Browser extensions (Grammarly et al.) inject attributes onto <body>
+          before React hydrates; suppress that one-level diff, not real ones. */}
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
