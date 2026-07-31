@@ -1,42 +1,37 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 export type BrowserName = "chrome" | "brave" | "edge" | "other";
 
-function isMobileDevice(): boolean {
-  if (typeof navigator === "undefined") return false;
-  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const noSubscribe = () => () => {};
+
+function fromUserAgent(): BrowserName {
+  const ua = navigator.userAgent;
+  if (!ua.includes("Chrome/")) return "other";
+  return ua.includes("Edg/") ? "edge" : "chrome";
 }
 
-export function useBrowser(): BrowserName | null {
-  const [browser, setBrowser] = useState<BrowserName | null>(() => {
-    // Mobile: return "chrome" synchronously — no detection needed, no skeleton.
-    // Desktop: return null so the skeleton shows while async detection runs.
-    return isMobileDevice() ? "chrome" : null;
-  });
+/**
+ * The user agent is enough for Chrome/Edge/other; Brave hides behind an async
+ * probe and reports a Chrome UA until it answers.
+ *
+ * Server-renders as "chrome" — the common case — so the install button doesn't
+ * visibly change label for most visitors on hydration.
+ */
+export function useBrowser(): BrowserName {
+  const detected = useSyncExternalStore<BrowserName>(
+    noSubscribe,
+    fromUserAgent,
+    () => "chrome",
+  );
+  const [isBrave, setIsBrave] = useState(false);
 
   useEffect(() => {
-    // Mobile already resolved synchronously above — skip detection entirely.
-    if (isMobileDevice()) return;
-
-    const detect = async (): Promise<BrowserName> => {
-      if (!navigator.userAgent.includes("Chrome/")) return "other";
-      if (navigator.userAgent.includes("Edg/")) return "edge";
-
-      const nav = navigator as Navigator & {
-        brave?: { isBrave: () => Promise<boolean> };
-      };
-      if (!nav.brave) return "chrome";
-
-      try {
-        return (await nav.brave.isBrave()) ? "brave" : "chrome";
-      } catch {
-        return "chrome";
-      }
+    const nav = navigator as Navigator & {
+      brave?: { isBrave: () => Promise<boolean> };
     };
-
-    detect().then(setBrowser).catch(() => setBrowser("other"));
+    nav.brave?.isBrave().then(setIsBrave, () => {});
   }, []);
 
-  return browser;
+  return isBrave ? "brave" : detected;
 }

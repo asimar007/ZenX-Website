@@ -1,23 +1,12 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Dialog } from "radix-ui";
 import { InstallButton } from "./InstallButton";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetClose,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
 
 const NAV_LINKS = ["Features", "Filters", "How it works"];
-
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-}
+const anchor = (item: string) => `#${item.toLowerCase().replace(/ /g, "-")}`;
 
 export function Navbar() {
   return (
@@ -39,13 +28,13 @@ export function Navbar() {
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {NAV_LINKS.map((item) => (
-              <button
+              <a
                 key={item}
-                onClick={() => scrollTo(item.toLowerCase().replace(/ /g, "-"))}
-                className="px-3 py-1.5 text-[13px] text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] rounded-lg transition-all duration-150 cursor-pointer"
+                href={anchor(item)}
+                className="px-3 py-1.5 text-[13px] text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] rounded-lg transition-all duration-150"
               >
                 {item}
-              </button>
+              </a>
             ))}
           </div>
 
@@ -55,22 +44,21 @@ export function Navbar() {
               <InstallButton size="sm" />
             </div>
 
-            {/* Mobile hamburger */}
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  className="md:hidden text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0]"
-                >
-                  <Menu className="size-4" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </SheetTrigger>
+            {/* Mobile drawer */}
+            <Dialog.Root>
+              <Dialog.Trigger className="md:hidden inline-flex items-center justify-center size-7 rounded-lg text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] transition-colors">
+                <Menu className="size-4" />
+                <span className="sr-only">Open menu</span>
+              </Dialog.Trigger>
 
-              <SheetContent side="right" className="w-72 bg-white p-0">
-                <SheetHeader className="px-5 py-4 border-b border-[#e5e5e0]">
-                  <SheetTitle>
+              <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 z-50 bg-black/10 supports-backdrop-filter:backdrop-blur-xs data-[state=open]:animate-[fade-in_150ms_ease-out] data-[state=closed]:animate-[fade-out_150ms_ease-in]" />
+
+                <Dialog.Content
+                  aria-describedby={undefined}
+                  className="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-lg data-[state=open]:animate-[drawer-in_200ms_ease-out] data-[state=closed]:animate-[drawer-out_200ms_ease-in]"
+                >
+                  <Dialog.Title className="flex items-center px-5 py-4 border-b border-[#e5e5e0]">
                     <Image
                       src="/ZenX.png"
                       alt="ZenX"
@@ -78,25 +66,28 @@ export function Navbar() {
                       height={32}
                       className="object-contain mix-blend-multiply"
                     />
-                  </SheetTitle>
-                </SheetHeader>
+                  </Dialog.Title>
 
-                <nav className="flex flex-col px-3 py-3">
-                  {NAV_LINKS.map((item) => (
-                    <SheetClose asChild key={item}>
-                      <button
-                        onClick={() =>
-                          scrollTo(item.toLowerCase().replace(/ /g, "-"))
-                        }
-                        className="flex items-center text-[14px] text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] px-3 py-2.5 rounded-lg transition-colors cursor-pointer"
-                      >
-                        {item}
-                      </button>
-                    </SheetClose>
-                  ))}
-                </nav>
-              </SheetContent>
-            </Sheet>
+                  <Dialog.Close className="absolute top-4 right-4 inline-flex items-center justify-center size-7 rounded-lg text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] transition-colors">
+                    <X className="size-4" />
+                    <span className="sr-only">Close menu</span>
+                  </Dialog.Close>
+
+                  <nav className="flex flex-col px-3 py-3">
+                    {NAV_LINKS.map((item) => (
+                      <Dialog.Close asChild key={item}>
+                        <a
+                          href={anchor(item)}
+                          className="text-[14px] text-[#6b7280] hover:text-[#1a1a18] hover:bg-[#f3f3f0] px-3 py-2.5 rounded-lg transition-colors"
+                        >
+                          {item}
+                        </a>
+                      </Dialog.Close>
+                    ))}
+                  </nav>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
           </div>
         </nav>
       </div>

@@ -1,18 +1,12 @@
-interface Props {
-  width?: number;
-  height?: number;
-  className?: string;
-}
+import type { SVGProps } from "react";
 
-export default function BraveIcon({ width = 16, height = 16, className }: Props) {
+export default function BraveIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 436.49 511.97"
-      width={width}
-      height={height}
-      className={className}
       aria-hidden="true"
+      {...props}
     >
       <defs>
         <linearGradient

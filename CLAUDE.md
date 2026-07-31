@@ -14,7 +14,7 @@ Marketing/landing site for **ZenX** — a browser extension that filters politic
 - **Framework:** Next.js 16.2.1 (App Router) — read `node_modules/next/dist/docs/` before writing any Next.js code
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
-- **UI components:** shadcn/ui (Radix UI primitives)
+- **UI components:** none — plain Tailwind markup. Radix UI is used directly for the one drawer (`Dialog` in `Navbar.tsx`).
 - **Icons:** Lucide React
 - **Fonts:** Geist (sans), Instrument Serif (serif) via `next/font/google`
 
@@ -23,13 +23,13 @@ Marketing/landing site for **ZenX** — a browser extension that filters politic
 ```text
 app/
   layout.tsx        # Root layout — site-wide metadata (metadataBase, title.template, robots, google verification)
-  page.tsx          # Home page — page-level metadata (title, description, OG, twitter, keywords)
+  page.tsx          # Home page — composes the sections, no metadata of its own
   sitemap.ts        # Auto-generates /sitemap.xml
   robots.ts         # Auto-generates /robots.txt
   globals.css       # Global styles
 
 components/
-  Navbar.tsx        # Fixed top nav with mobile sheet drawer
+  Navbar.tsx        # Fixed top nav + mobile drawer (Radix Dialog, inlined)
   Hero.tsx          # Hero section — headline, CTA buttons, ProductHunt badge, stats
   FeedMockup.tsx    # Visual demo of filtered feed
   Features.tsx      # 6-feature grid
@@ -38,12 +38,10 @@ components/
   CTA.tsx           # Bottom call-to-action
   Footer.tsx        # Footer with logo, copyright, links
   InstallButton.tsx # Browser-aware install button (Chrome/Brave/Edge/other)
-  icons/            # Chrome, Brave, Edge, Github SVG icon components
-  ui/               # shadcn/ui primitives (button, badge, card, separator, sheet)
+  icons/            # Chrome, Brave, Edge, Github SVGs — all take SVGProps<SVGSVGElement>
 
 lib/
-  useBrowser.ts     # Hook that detects Chrome / Brave / Edge / other at runtime
-  utils.ts          # cn() helper (clsx + tailwind-merge)
+  useBrowser.ts     # Detects Chrome / Brave / Edge / other at runtime
 
 public/
   ZenX.png          # Logo (black on white — use mix-blend-multiply in CSS to hide white bg)
@@ -54,15 +52,17 @@ public/
 ## Key Decisions
 
 - **Logo background:** `ZenX.png` has a white background. Use Tailwind `mix-blend-multiply` on the `<Image>` instead of editing the file — works on light backgrounds.
-- **Install button:** Points to the GitHub release zip (not Chrome Web Store — not published there yet). When published, update `CHROME_STORE_URL` in `components/InstallButton.tsx` and the "Download" link in `components/Footer.tsx`.
-- **Metadata split:** Layout holds site-wide defaults only. All page-specific SEO (title, description, OG, twitter) lives in `app/page.tsx`.
-- **External images:** `api.producthunt.com` is allowlisted in `next.config.ts` `remotePatterns` for the ProductHunt badge in Hero.
-- **No dark mode:** Site uses a single light theme (`bg-[#fafaf8]`). `mix-blend-multiply` on the logo would break on dark backgrounds.
+- **Install button:** Points to the GitHub release zip (not Chrome Web Store — not published there yet). When published, update `DOWNLOAD_URL` in `components/InstallButton.tsx` and the `LINKS` "Download" entry in `components/Footer.tsx`.
+- **Browser detection:** `useBrowser` server-renders as `"chrome"` (the common case) so the install button doesn't visibly change label on hydration. Brave needs an async probe and reports a Chrome UA until it answers.
+- **ProductHunt badge:** plain `<img>`, not `next/image`. It's a remote SVG and next/image refuses to optimize SVG without `dangerouslyAllowSVG`. There is no `next.config.ts`.
+- **No dark mode:** Site uses a single light theme (`bg-[#fafaf8]`). `mix-blend-multiply` on the logo would break on dark backgrounds. `globals.css` carries no `.dark` block — don't reintroduce one without fixing the logo.
+- **Section nav:** plain `#anchor` links plus `scroll-behavior` / `scroll-padding-top` in `globals.css` (the padding clears the fixed navbar). No JS scroll handlers.
+- **Drawer animation:** four keyframes in `globals.css` driven off Radix's `data-state` via `data-[state=open]:animate-[...]`. Deliberately not `tw-animate-css`.
+- **Colors:** section styling uses literal hex (`#fafaf8`, `#e5e5e0`, `#6b7280`, `#9ca3af`). `globals.css` only defines the handful of theme tokens actually referenced — add a token only when something uses it.
 
 ## SEO Checklist (already implemented)
 
-- [x] `metadata` export on `app/page.tsx` (title, description, keywords, OG, twitter card)
-- [x] `metadataBase`, `title.template`, `robots`, `verification.google` in `app/layout.tsx`
+- [x] Full `metadata` export in `app/layout.tsx` (title/template, description, keywords, OG, twitter card, robots, canonical, google verification). `app/page.tsx` has none.
 - [x] `app/sitemap.ts` → `/sitemap.xml`
 - [x] `app/robots.ts` → `/robots.txt`
 - [x] Google Search Console verified (`p146AyuDsOE7YNi3hhCChmOGvua-T_6g6R2z1q_TFnE`)

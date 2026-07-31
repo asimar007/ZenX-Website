@@ -1,5 +1,12 @@
-import Link from "next/link";
 import Image from "next/image";
+
+const LINKS = [
+  { label: "GitHub", href: "https://github.com/asimar007/ZenX.git" },
+  {
+    label: "Download",
+    href: "https://github.com/asimar007/ZenX/releases/tag/v1.0.0",
+  },
+];
 
 export function Footer() {
   return (
@@ -19,25 +26,16 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-6">
-          {[
-            {
-              label: "GitHub",
-              href: "https://github.com/asimar007/ZenX.git",
-            },
-            { label: "Privacy", href: "#" },
-            { label: "Download", href: "https://github.com/asimar007/ZenX/releases/tag/v1.0.0" },
-          ].map((l) => (
-            <Link
+          {LINKS.map((l) => (
+            <a
               key={l.label}
               href={l.href}
-              target={l.href.startsWith("http") ? "_blank" : undefined}
-              rel={
-                l.href.startsWith("http") ? "noopener noreferrer" : undefined
-              }
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[12px] text-[#9ca3af] hover:text-[#6b7280] transition-colors"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
         </div>
       </div>

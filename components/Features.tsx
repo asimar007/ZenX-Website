@@ -1,5 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-
 const FEATURES = [
   {
     icon: "⚡",
@@ -42,8 +40,7 @@ export function Features() {
             Why ZenX
           </p>
           <h2
-            className="text-3xl md:text-4xl tracking-tight"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
+            className="font-serif text-3xl md:text-4xl tracking-tight"
           >
             Built for your peace of mind.
           </h2>
@@ -51,20 +48,18 @@ export function Features() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-[#e5e5e0] border border-[#e5e5e0] rounded-2xl overflow-hidden">
           {FEATURES.map((f) => (
-            <Card
+            <div
               key={f.title}
-              className="rounded-none ring-0 bg-[#fafaf8] hover:bg-white transition-colors border-0 py-0 gap-0 group"
+              className="p-8 bg-[#fafaf8] hover:bg-white transition-colors"
             >
-              <CardContent className="p-8">
-                <span className="text-2xl mb-4 block">{f.icon}</span>
-                <h3 className="text-[14px] font-semibold mb-2 tracking-tight">
-                  {f.title}
-                </h3>
-                <p className="text-[13px] text-[#6b7280] leading-relaxed">
-                  {f.desc}
-                </p>
-              </CardContent>
-            </Card>
+              <span className="text-2xl mb-4 block">{f.icon}</span>
+              <h3 className="text-[14px] font-semibold mb-2 tracking-tight">
+                {f.title}
+              </h3>
+              <p className="text-[13px] text-[#6b7280] leading-relaxed">
+                {f.desc}
+              </p>
+            </div>
           ))}
         </div>
       </div>

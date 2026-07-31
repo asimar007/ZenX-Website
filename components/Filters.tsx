@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+const CHIP =
+  "inline-flex items-center border px-2 py-0.5 rounded-md text-[11px] font-mono";
 
 const CATEGORIES = [
   {
@@ -59,8 +59,7 @@ export function Filters() {
             Filter Categories
           </p>
           <h2
-            className="text-3xl md:text-4xl tracking-tight"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
+            className="font-serif text-3xl md:text-4xl tracking-tight"
           >
             5 categories. <span className="text-[#9ca3af]">200+ keywords.</span>
           </h2>
@@ -68,54 +67,41 @@ export function Filters() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {CATEGORIES.map((cat) => (
-            <Card
+            <div
               key={cat.name}
-              className="bg-white border border-[#e5e5e0] rounded-2xl ring-0 hover:shadow-sm transition-shadow py-0 gap-0"
+              className="p-6 bg-white border border-[#e5e5e0] rounded-2xl hover:shadow-sm transition-shadow"
             >
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-2xl">{cat.emoji}</span>
-                  {cat.count !== null ? (
-                    <span className="text-[11px] text-[#9ca3af] font-medium">
-                      {cat.count}+ keywords
+              <div className="flex items-start justify-between mb-4">
+                <span className="text-2xl">{cat.emoji}</span>
+                <span className="text-[11px] text-[#9ca3af] font-medium">
+                  {cat.count !== null ? `${cat.count}+ keywords` : "you decide"}
+                </span>
+              </div>
+
+              <h3 className="text-[14px] font-semibold tracking-tight mb-3">
+                {cat.name}
+              </h3>
+
+              {cat.custom ? (
+                <p className="text-[12px] text-[#9ca3af] leading-relaxed">
+                  Add any word or phrase. Perfect for blocking specific people,
+                  topics, or anything you&apos;re tired of.
+                </p>
+              ) : (
+                <div className="flex flex-wrap gap-1.5">
+                  {cat.samples.map((kw) => (
+                    <span key={kw} className={`${CHIP} ${cat.accent}`}>
+                      {kw}
                     </span>
-                  ) : (
-                    <span className="text-[11px] text-[#9ca3af] font-medium">
-                      you decide
-                    </span>
-                  )}
+                  ))}
+                  <span
+                    className={`${CHIP} text-[#9ca3af] bg-[#f8f8f6] border-[#e5e5e0]`}
+                  >
+                    +{(cat.count ?? 0) - cat.samples.length} more
+                  </span>
                 </div>
-
-                <h3 className="text-[14px] font-semibold tracking-tight mb-3">
-                  {cat.name}
-                </h3>
-
-                {cat.custom ? (
-                  <p className="text-[12px] text-[#9ca3af] leading-relaxed">
-                    Add any word or phrase. Perfect for blocking specific
-                    people, topics, or anything you&apos;re tired of.
-                  </p>
-                ) : (
-                  <div className="flex flex-wrap gap-1.5">
-                    {cat.samples.map((kw) => (
-                      <Badge
-                        key={kw}
-                        variant="outline"
-                        className={`text-[11px] px-2 h-auto py-0.5 rounded-md font-mono ${cat.accent}`}
-                      >
-                        {kw}
-                      </Badge>
-                    ))}
-                    <Badge
-                      variant="outline"
-                      className="text-[11px] px-2 h-auto py-0.5 rounded-md text-[#9ca3af] bg-[#f8f8f6] border-[#e5e5e0]"
-                    >
-                      +{(cat.count ?? 0) - cat.samples.length} more
-                    </Badge>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+              )}
+            </div>
           ))}
         </div>
       </div>

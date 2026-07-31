@@ -1,23 +1,15 @@
 "use client";
-import { useId } from "react";
+import { useId, type SVGProps } from "react";
 
-interface Props {
-  width?: number;
-  height?: number;
-  className?: string;
-}
-
-export default function Edge({ width = 16, height = 16, className }: Props) {
+export default function Edge(props: SVGProps<SVGSVGElement>) {
   const id = useId();
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
-      width={width}
-      height={height}
-      className={className}
       aria-hidden="true"
+      {...props}
     >
       <defs>
         <radialGradient

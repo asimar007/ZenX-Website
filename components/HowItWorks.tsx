@@ -25,8 +25,7 @@ export function HowItWorks() {
             How it works
           </p>
           <h2
-            className="text-3xl md:text-4xl tracking-tight"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
+            className="font-serif text-3xl md:text-4xl tracking-tight"
           >
             Up in 30 seconds.
           </h2>
@@ -40,8 +39,7 @@ export function HowItWorks() {
             <div key={step.n} className="relative">
               <div className="w-12 h-12 rounded-full border border-[#e5e5e0] bg-white flex items-center justify-center mb-5 relative z-10">
                 <span
-                  className="text-[15px] font-semibold tracking-tight text-[#1a1a18]"
-                  style={{ fontFamily: "'Instrument Serif', serif" }}
+                  className="font-serif text-[15px] font-semibold tracking-tight text-[#1a1a18]"
                 >
                   {step.n}
                 </span>

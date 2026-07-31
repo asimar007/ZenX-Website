@@ -1,22 +1,14 @@
 "use client";
-import { useId } from "react";
+import { useId, type SVGProps } from "react";
 
-interface Props {
-  width?: number;
-  height?: number;
-  className?: string;
-}
-
-export default function ChromeIcon({ width = 16, height = 16, className }: Props) {
+export default function ChromeIcon(props: SVGProps<SVGSVGElement>) {
   const id = useId();
 
   return (
     <svg
       viewBox="0 0 128 128"
-      width={width}
-      height={height}
-      className={className}
       aria-hidden="true"
+      {...props}
     >
       <circle fill="#fff" cx="64.149" cy="64.236" r="60.999" />
       <path
