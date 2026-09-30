@@ -23,29 +23,12 @@ export const metadata: Metadata = {
     template: "%s | ZenX",
   },
   description: siteDescription,
-  keywords: [
-    "ZenX",
-    "X filter",
-    "Twitter filter",
-    "hide political content",
-    "clean X feed",
-    "block hate speech",
-    "Twitter extension",
-    "X browser extension",
-    "social media filter",
-    "calm Twitter",
-  ],
   authors: [{ name: "Asim" }],
   creator: "Asim",
   publisher: "ZenX",
+  // index/follow are the defaults; only the image-preview size needs saying.
   robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-    },
+    googleBot: { "max-image-preview": "large" },
   },
   alternates: {
     canonical: siteUrl,
@@ -65,11 +48,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  // X falls back to the og: title/description/image above.
   twitter: {
     card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
-    images: [`${siteUrl}/ZenXMeta.png`],
   },
   verification: {
     google: "p146AyuDsOE7YNi3hhCChmOGvua-T_6g6R2z1q_TFnE",

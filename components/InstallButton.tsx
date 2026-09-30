@@ -1,25 +1,19 @@
 "use client";
-import type { ComponentType, SVGProps } from "react";
+import Image from "next/image";
 import { ArrowRight, Download } from "lucide-react";
 import { useBrowser, type BrowserName } from "@/lib/useBrowser";
-import BraveIcon from "./icons/Brave";
-import ChromeIcon from "./icons/Chrome";
-import EdgeIcon from "./icons/Edge";
 
 const DOWNLOAD_URL = "https://github.com/asimar007/ZenX/releases/tag/v1.0.0";
 
-const BROWSERS: Record<
-  BrowserName,
-  { label: string; Icon: ComponentType<SVGProps<SVGSVGElement>> }
-> = {
-  chrome: { label: "Add to Chrome", Icon: ChromeIcon },
-  brave: { label: "Add to Brave", Icon: BraveIcon },
-  edge: { label: "Add to Microsoft Edge", Icon: EdgeIcon },
-  other: { label: "Add to Browser", Icon: Download },
+const LABELS: Record<BrowserName, string> = {
+  chrome: "Add to Chrome",
+  brave: "Add to Brave",
+  edge: "Add to Microsoft Edge",
+  other: "Add to Browser",
 };
 
 export function InstallButton({ size = "lg" }: { size?: "sm" | "lg" }) {
-  const { label, Icon } = BROWSERS[useBrowser()];
+  const browser = useBrowser();
 
   return (
     <a
@@ -30,8 +24,15 @@ export function InstallButton({ size = "lg" }: { size?: "sm" | "lg" }) {
         size === "sm" ? "px-3.5 py-1.75" : "px-7 py-4.5"
       }`}
     >
-      <Icon width={16} height={16} className="shrink-0" />
-      <span>{label}</span>
+      {browser === "other" ? (
+        <Download className="size-4 shrink-0" />
+      ) : (
+        // public/{chrome,brave,edge}.svg — named after BrowserName.
+        // size-4 pins both sides: preflight's `height: auto` would otherwise stretch
+        // the non-square Brave logo and trip next/image's aspect-ratio warning.
+        <Image src={`/${browser}.svg`} alt="" width={16} height={16} className="size-4 shrink-0" />
+      )}
+      <span>{LABELS[browser]}</span>
       {size === "lg" && <ArrowRight className="size-4 shrink-0" />}
     </a>
   );

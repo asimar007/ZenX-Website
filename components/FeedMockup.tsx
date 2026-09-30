@@ -1,72 +1,49 @@
 "use client";
 import { useState } from "react";
-import { Heart, Landmark, MessageCircle, ShieldCheck, Swords } from "lucide-react";
+import { Heart, Landmark, MessageCircle, ShieldCheck, Swords, type LucideIcon } from "lucide-react";
 
-const TWEETS = [
+type Post = {
+  id: number;
+  avatar: string;
+  name: string;
+  handle: string;
+  time: string;
+  text: string;
+  likes: string;
+  replies: string;
+};
+type Hidden = { id: number; Icon: LucideIcon; category: string; keyword: string };
+
+const TWEETS: (Post | Hidden)[] = [
   {
     id: 1,
     avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    color: "",
     name: "Sarah Chen",
     handle: "@sarahchen",
     time: "2m",
     text: "Just finished reading an amazing book on urban architecture. The way cities evolve over decades is genuinely fascinating. Any recommendations?",
-    hidden: false,
-    category: null,
     likes: "189",
     replies: "12",
   },
-  {
-    id: 2,
-    avatar: <Landmark className="size-4" />,
-    color: "bg-mint-veil text-forest-ink",
-    name: "Hidden",
-    handle: "",
-    time: "",
-    text: "",
-    hidden: true,
-    category: "Politics",
-    keyword: "election",
-    likes: "",
-    replies: "",
-  },
+  { id: 2, Icon: Landmark, category: "Politics", keyword: "election" },
   {
     id: 3,
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    color: "",
     name: "Marcus Rivera",
     handle: "@marcusdev",
     time: "8m",
     text: "TypeScript generics are actually beautiful once you understand them. Spent 2 hours debugging yesterday and now I get it",
-    hidden: false,
-    category: null,
     likes: "441",
     replies: "45",
   },
-  {
-    id: 4,
-    avatar: <Swords className="size-4" />,
-    color: "bg-mint-veil text-forest-ink",
-    name: "Hidden",
-    handle: "",
-    time: "",
-    text: "",
-    hidden: true,
-    category: "War & Conflict",
-    keyword: "ceasefire",
-    likes: "",
-    replies: "",
-  },
+  { id: 4, Icon: Swords, category: "War & Conflict", keyword: "ceasefire" },
   {
     id: 5,
     avatar: "https://randomuser.me/api/portraits/women/65.jpg",
-    color: "",
     name: "Emma Clarke",
     handle: "@emmaclarke",
     time: "15m",
     text: "Café morning in Kyoto. There's something timeless about sitting by the window when it's raining outside.",
-    hidden: false,
-    category: null,
     likes: "312",
     replies: "8",
   },
@@ -96,17 +73,15 @@ export function FeedMockup() {
         </div>
 
         {TWEETS.map((tweet) => {
-          if (tweet.hidden && !revealed.has(tweet.id)) {
+          if ("category" in tweet && !revealed.has(tweet.id)) {
             return (
               <div
                 key={tweet.id}
                 className="px-4.5 py-3.5 flex items-center justify-between gap-3 border-b bg-keylime-wash"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div
-                    className={`size-8 rounded-full flex items-center justify-center shrink-0 ${tweet.color}`}
-                  >
-                    {tweet.avatar}
+                  <div className="size-8 rounded-full flex items-center justify-center shrink-0 bg-mint-veil text-forest-ink">
+                    <tweet.Icon className="size-4" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[12px] text-charcoal">Tweet hidden by ZenX</p>
@@ -125,14 +100,14 @@ export function FeedMockup() {
             );
           }
 
-          if (tweet.hidden) {
+          if ("category" in tweet) {
             return (
               <div
                 key={tweet.id}
                 className="px-4.5 py-3.5 flex gap-3 border-b bg-mint-veil"
               >
                 <div className="size-8 rounded-full bg-cream-paper text-forest-ink flex items-center justify-center shrink-0">
-                  {tweet.avatar}
+                  <tweet.Icon className="size-4" />
                 </div>
                 <div>
                   <p className="text-[12px] text-charcoal italic">
@@ -154,7 +129,7 @@ export function FeedMockup() {
               {/* Placeholder portraits (randomuser.me) for fictional people — remote, so plain <img>. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={tweet.avatar as string}
+                src={tweet.avatar}
                 alt=""
                 width={36}
                 height={36}

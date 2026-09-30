@@ -39,25 +39,27 @@
   --text-display--letter-spacing: -0.03em;
 }
 
-/* Drawer + overlay transitions, keyed off Radix's data-state. */
-@keyframes fade-in {
-  from {
+/* Mobile drawer (native <dialog>): slides in from the right, backdrop fades.
+   allow-discrete + overlay keep it on screen while the close transition runs. */
+.drawer,
+.drawer::backdrop {
+  transition-property: translate, opacity, display, overlay;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+.drawer:not([open]) {
+  translate: 100% 0;
+}
+.drawer:not([open])::backdrop {
+  opacity: 0;
+}
+@starting-style {
+  .drawer[open] {
+    translate: 100% 0;
+  }
+  .drawer[open]::backdrop {
     opacity: 0;
-  }
-}
-@keyframes fade-out {
-  to {
-    opacity: 0;
-  }
-}
-@keyframes drawer-in {
-  from {
-    transform: translateX(100%);
-  }
-}
-@keyframes drawer-out {
-  to {
-    transform: translateX(100%);
   }
 }
 
@@ -78,5 +80,9 @@
     @apply font-sans;
     scroll-behavior: smooth;
     scroll-padding-top: 1.5rem;
+  }
+  /* Radix used to lock scroll behind the drawer; the native dialog doesn't. */
+  html:has(dialog[open]) {
+    overflow: hidden;
   }
 }
