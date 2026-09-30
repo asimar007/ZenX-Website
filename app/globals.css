@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
+/* Botanical greenhouse on cream paper. Flat surfaces, no shadows —
+   depth comes from layering cream → keylime → mint → sage → slate. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-border: var(--border);
-  --color-ring: var(--ring);
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --border: oklch(0.922 0 0);
-  /* Ink, not gray: the focus ring has to read on the #fafaf8 page. */
-  --ring: #1a1a18;
-  --radius: 0.625rem;
+@theme {
+  --color-forest-ink: #0f3e17;
+  --color-forest-shadow: #0c2f10;
+  --color-sage-mist: #b1dbb8;
+  --color-keylime-wash: #e1f4df;
+  --color-mint-veil: #cfe7d3;
+  --color-slate-hush: #b6ced5;
+  --color-cream-paper: #fffefc;
+  --color-charcoal: #222222;
+  --color-border-mist: #efeeeb;
+
+  /* nav 7px · cards/buttons 14px · badges use rounded-full */
+  --radius-lg: 7px;
+  --radius-xl: 14px;
+
+  --text-caption: 10px;
+  --text-caption--line-height: 1.61;
+  --text-body: 14px;
+  --text-body--line-height: 1.5;
+  --text-subheading: 18px;
+  --text-subheading--line-height: 1.3;
+  --text-heading: 40px;
+  --text-heading--line-height: 1.35;
+  --text-heading--letter-spacing: -0.01em;
+  --text-heading-lg: 56px;
+  --text-heading-lg--line-height: 1.2;
+  --text-heading-lg--letter-spacing: -0.03em;
+  --text-display: 74px;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
 }
 
 /* Drawer + overlay transitions, keyed off Radix's data-state. */
@@ -47,21 +63,20 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border-mist;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cream-paper text-charcoal;
   }
   /* One visible keyboard-focus treatment for every control on the page. */
   :focus-visible {
-    outline: 2px solid var(--ring);
+    outline: 2px solid var(--color-forest-ink);
     outline-offset: 2px;
     border-radius: 2px;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
-    /* Clears the fixed navbar when jumping to a section anchor. */
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 1.5rem;
   }
 }

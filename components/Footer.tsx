@@ -10,8 +10,8 @@ const LINKS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#e5e5e0] px-6 py-8">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer className="border-t px-4 sm:px-6 lg:px-8 py-8.75">
+      <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Image
             src="/ZenX.png"
@@ -20,7 +20,7 @@ export function Footer() {
             height={426}
             className="h-8 w-auto shrink-0 mix-blend-multiply"
           />
-          <span className="text-[12px] text-[#9ca3af] ml-2">
+          <span className="text-[12px] text-charcoal ml-2">
             © {new Date().getFullYear()} · Made for a calmer internet
           </span>
         </div>
@@ -32,7 +32,7 @@ export function Footer() {
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[12px] text-[#9ca3af] hover:text-[#6b7280] transition-colors py-2"
+              className="text-body text-forest-ink hover:text-forest-shadow underline-offset-4 hover:underline py-2"
             >
               {l.label}
             </a>

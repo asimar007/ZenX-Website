@@ -16,7 +16,7 @@ Marketing/landing site for **ZenX** — a browser extension that filters politic
 - **Styling:** Tailwind CSS v4
 - **UI components:** none — plain Tailwind markup. Radix UI is used directly for the one drawer (`Dialog` in `Navbar.tsx`).
 - **Icons:** Lucide React
-- **Fonts:** Geist (sans), Instrument Serif (serif) via `next/font/google`
+- **Fonts:** Inter (sans, stands in for Suisse Intl), Cormorant Garamond 300 (serif, stands in for Faire Octave) via `next/font/google`
 
 ## Project Structure
 
@@ -29,9 +29,9 @@ app/
   globals.css       # Global styles
 
 components/
-  Navbar.tsx        # Fixed top nav + mobile drawer (Radix Dialog, inlined)
-  Hero.tsx          # Hero section — headline, CTA buttons, ProductHunt badge, stats
-  FeedMockup.tsx    # Visual demo of filtered feed
+  Navbar.tsx        # Static top nav + mobile drawer (Radix Dialog, inlined)
+  Hero.tsx          # Keylime copy panel + slate product panel (FeedMockup), stats strip
+  FeedMockup.tsx    # Interactive filtered-feed demo, rendered inside Hero
   Features.tsx      # 6-feature grid
   Filters.tsx       # Filter categories showcase
   HowItWorks.tsx    # 3-step install flow
@@ -55,10 +55,13 @@ public/
 - **Install button:** Points to the GitHub release zip (not Chrome Web Store — not published there yet). When published, update `DOWNLOAD_URL` in `components/InstallButton.tsx` and the `LINKS` "Download" entry in `components/Footer.tsx`.
 - **Browser detection:** `useBrowser` server-renders as `"chrome"` (the common case) so the install button doesn't visibly change label on hydration. Brave needs an async probe and reports a Chrome UA until it answers.
 - **ProductHunt badge:** plain `<img>`, not `next/image`. It's a remote SVG and next/image refuses to optimize SVG without `dangerouslyAllowSVG`. There is no `next.config.ts`.
-- **No dark mode:** Site uses a single light theme (`bg-[#fafaf8]`). `mix-blend-multiply` on the logo would break on dark backgrounds. `globals.css` carries no `.dark` block — don't reintroduce one without fixing the logo.
-- **Section nav:** plain `#anchor` links plus `scroll-behavior` / `scroll-padding-top` in `globals.css` (the padding clears the fixed navbar). No JS scroll handlers.
+- **No dark mode:** Site uses a single light theme (cream paper `#fffefc`). `mix-blend-multiply` on the logo would break on dark backgrounds. `globals.css` carries no `.dark` block — don't reintroduce one without fixing the logo.
+- **Section nav:** plain `#anchor` links plus `scroll-behavior` in `globals.css`. Navbar is not sticky (design system). No JS scroll handlers.
 - **Drawer animation:** four keyframes in `globals.css` driven off Radix's `data-state` via `data-[state=open]:animate-[...]`. Deliberately not `tw-animate-css`.
-- **Colors:** section styling uses literal hex (`#fafaf8`, `#e5e5e0`, `#6b7280`, `#9ca3af`). `globals.css` only defines the handful of theme tokens actually referenced — add a token only when something uses it.
+- **Design system ("botanical greenhouse on cream paper"):** tokens live in `@theme` in `globals.css` — `forest-ink` (every CTA/heading/link), `forest-shadow` (hover), surfaces `cream-paper` → `keylime-wash` → `mint-veil` → `sage-mist` → `slate-hush`, text `charcoal`, hairlines `border-mist`. Rules: no box-shadows, no colored card borders, no hues outside the palette, serif headings weight 300 only (never bold), `rounded-xl` (14px) cards/buttons, `rounded-lg` (7px) nav items, `rounded-full` badges, 11px/600 uppercase 0.08em only for eyebrows. Slate panel is reserved for the product mockup.
+- **Browser icons on install button:** kept in their brand colours (owner's call) on the forest button.
+- **Page width:** containers are `max-w-[1440px]` so desktop gutters stay tight; sections pad `px-4 sm:px-6 lg:px-8`.
+- **ProductHunt badge:** uses `theme=neutral` to avoid PH orange.
 
 ## SEO Checklist (already implemented)
 

@@ -1,4 +1,5 @@
 import { InstallButton } from "./InstallButton";
+import { FeedMockup } from "./FeedMockup";
 import GithubIcon from "./icons/Github";
 
 const STATS = [
@@ -10,81 +11,72 @@ const STATS = [
 
 export function Hero() {
   return (
-    <section className="pt-36 pb-24 px-6 max-w-5xl mx-auto">
-      {/* Badge */}
-      <div className="flex justify-center mb-8">
-        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#e5e5e0] bg-white/60 text-[12px] text-[#6b7280]">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Free &amp; Open Source — v1.0.0
-        </span>
-      </div>
+    <section className="px-4 sm:px-6 lg:px-8 pt-2 pb-16 md:pb-24">
+      <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-3.5">
+        {/* Copy panel */}
+        <div className="bg-keylime-wash rounded-xl p-7 sm:p-10.5 flex flex-col justify-center">
+          <span className="self-start rounded-full bg-cream-paper text-forest-ink text-body px-3.5 py-2.25 mb-7">
+            Free &amp; open source · v1.0.0
+          </span>
 
-      {/* Headline */}
-      <div className="text-center max-w-2xl mx-auto">
-        <h1 className="font-serif text-5xl md:text-6xl leading-[1.08] tracking-tight mb-6">
-          Your Twitter feed,
-          <br />
-          <em className="not-italic text-[#6b7280]">finally peaceful.</em>
-        </h1>
-        <p className="text-[16px] text-[#6b7280] leading-relaxed max-w-md mx-auto font-light">
-          Automatically hides political arguments, hate speech, war news, and
-          controversy — so you can enjoy social media again.
-        </p>
-      </div>
+          <h1 className="font-serif text-forest-ink text-[44px] leading-[1.05] tracking-[-0.03em] sm:text-heading-lg xl:text-display">
+            Your Twitter feed, finally peaceful.
+          </h1>
+          <p className="mt-5.25 text-subheading font-light text-charcoal max-w-md">
+            Automatically hides political arguments, hate speech, war news, and
+            controversy — so you can enjoy social media again.
+          </p>
 
-      {/* CTA */}
-      <div className="flex flex-col items-center gap-3 mt-10">
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
-          <InstallButton size="lg" />
+          <div className="mt-8.75 flex flex-col sm:flex-row gap-3.5">
+            <InstallButton size="lg" />
+            <a
+              href="https://github.com/asimar007/ZenX.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-cream-paper text-forest-ink text-body px-7 py-4.5 hover:bg-mint-veil transition-colors"
+            >
+              <GithubIcon width={16} height={16} />
+              <span>View on GitHub</span>
+            </a>
+          </div>
+          <p className="mt-3.5 text-[12px] text-charcoal">
+            No account · No data collected · 100% local
+          </p>
+
           <a
-            href="https://github.com/asimar007/ZenX.git"
+            href="https://www.producthunt.com/products/zenx?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-zenx"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap px-6 py-3 text-[14px] font-medium rounded-xl border border-[#e5e5e0] text-[#6b7280] hover:text-[#1a1a18] hover:bg-white transition-colors"
+            className="mt-7 self-start"
           >
-            <GithubIcon width={16} height={16} />
-            <span>View on GitHub</span>
+            {/* Remote SVG — next/image refuses to optimize SVG, so serve it directly. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="ZenX - Your Twitter feed, finally peaceful | Product Hunt"
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1118847&theme=neutral&t=1776568735676"
+              width={250}
+              height={54}
+              className="hover:opacity-80 transition-opacity"
+            />
           </a>
         </div>
-        <p className="text-[12px] text-[#9ca3af]">
-          No account · No data collected · 100% local
-        </p>
-      </div>
 
-      {/* ProductHunt Badge */}
-      <div className="flex justify-center mt-8">
-        <a
-          href="https://www.producthunt.com/products/zenx?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-zenx"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Remote SVG — next/image refuses to optimize SVG, so serve it directly. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            alt="ZenX - Your Twitter feed, finally peaceful | Product Hunt"
-            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1118847&theme=light&t=1776568735676"
-            width={250}
-            height={54}
-            className="hover:opacity-80 transition-opacity"
-          />
-        </a>
-      </div>
-
-      {/* Social proof */}
-      <div className="mt-12">
-        <div className="h-px bg-[#e5e5e0]" />
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8 pt-12 max-w-md sm:max-w-none mx-auto">
-          {STATS.map(([num, label]) => (
-            <div key={label} className="text-center">
-              <div className="font-serif text-xl font-semibold tracking-tight">
-                {num}
-              </div>
-              <div className="text-[11px] text-[#9ca3af] uppercase tracking-wider mt-0.5">
-                {label}
-              </div>
-            </div>
-          ))}
+        {/* Product panel */}
+        <div className="bg-slate-hush rounded-xl p-3.5 sm:p-10.5 flex flex-col justify-center">
+          <FeedMockup />
         </div>
+      </div>
+
+      {/* Stats strip */}
+      <div className="max-w-[1440px] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-7 pt-14 md:pt-19">
+        {STATS.map(([num, label]) => (
+          <div key={label} className="text-center">
+            <div className="font-serif text-heading text-forest-ink leading-none">
+              {num}
+            </div>
+            <div className="mt-1.75 text-body text-charcoal">{label}</div>
+          </div>
+        ))}
       </div>
     </section>
   );

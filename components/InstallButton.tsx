@@ -1,6 +1,6 @@
 "use client";
 import type { ComponentType, SVGProps } from "react";
-import { Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { useBrowser, type BrowserName } from "@/lib/useBrowser";
 import BraveIcon from "./icons/Brave";
 import ChromeIcon from "./icons/Chrome";
@@ -10,47 +10,29 @@ const DOWNLOAD_URL = "https://github.com/asimar007/ZenX/releases/tag/v1.0.0";
 
 const BROWSERS: Record<
   BrowserName,
-  { label: string; Icon: ComponentType<SVGProps<SVGSVGElement>>; bg: string }
+  { label: string; Icon: ComponentType<SVGProps<SVGSVGElement>> }
 > = {
-  chrome: {
-    label: "Add to Chrome",
-    Icon: ChromeIcon,
-    bg: "bg-[#4285F4] hover:bg-[#3367d6]",
-  },
-  brave: {
-    label: "Add to Brave",
-    Icon: BraveIcon,
-    bg: "bg-[#FF5500] hover:bg-[#e04d00]",
-  },
-  edge: {
-    label: "Add to Microsoft Edge",
-    Icon: EdgeIcon,
-    bg: "bg-[#0A76D5] hover:bg-[#0866b8]",
-  },
-  other: {
-    label: "Add to Browser",
-    Icon: Download,
-    bg: "bg-[#1a1a18] hover:bg-[#2d2d2b]",
-  },
+  chrome: { label: "Add to Chrome", Icon: ChromeIcon },
+  brave: { label: "Add to Brave", Icon: BraveIcon },
+  edge: { label: "Add to Microsoft Edge", Icon: EdgeIcon },
+  other: { label: "Add to Browser", Icon: Download },
 };
 
 export function InstallButton({ size = "lg" }: { size?: "sm" | "lg" }) {
-  const { label, Icon, bg } = BROWSERS[useBrowser()];
+  const { label, Icon } = BROWSERS[useBrowser()];
 
   return (
     <a
       href={DOWNLOAD_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium text-white transition-colors active:scale-[0.98] ${bg} ${
-        size === "sm"
-          ? "px-4 py-1.5 text-[13px] rounded-lg"
-          : "px-6 py-3 text-[14px] rounded-xl"
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-forest-ink text-cream-paper text-body hover:bg-forest-shadow transition-colors ${
+        size === "sm" ? "px-3.5 py-1.75" : "px-7 py-4.5"
       }`}
     >
       <Icon width={16} height={16} className="shrink-0" />
       <span>{label}</span>
-      <span className="opacity-50 font-normal text-[12px]">— Free</span>
+      {size === "lg" && <ArrowRight className="size-4 shrink-0" />}
     </a>
   );
 }

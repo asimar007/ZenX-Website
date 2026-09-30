@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+// Stand-ins for Suisse Intl (sans) and Faire Octave (serif, weight 300 only).
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-const instrumentSerif = Instrument_Serif({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: "400",
+  weight: "300",
   variable: "--font-serif",
 });
 
@@ -82,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       {/* Browser extensions (Grammarly et al.) inject attributes onto <body>
           before React hydrates; suppress that one-level diff, not real ones. */}
       <body suppressHydrationWarning>{children}</body>

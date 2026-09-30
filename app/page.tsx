@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { FeedMockup } from "@/components/FeedMockup";
 import { Features } from "@/components/Features";
 import { Filters } from "@/components/Filters";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -9,10 +8,9 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#fafaf8]">
+    <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <FeedMockup />
       <Features />
       <Filters />
       <HowItWorks />

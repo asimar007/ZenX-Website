@@ -2,14 +2,12 @@ import { InstallButton } from "./InstallButton";
 
 export function CTA() {
   return (
-    <section className="py-24 px-6 border-t border-[#e5e5e0] bg-[#f8f8f6]">
-      <div className="max-w-lg mx-auto text-center">
-        <h2
-          className="font-serif text-3xl md:text-4xl tracking-tight mb-4"
-        >
+    <section className="px-4 sm:px-6 lg:px-8 pb-16 md:pb-24">
+      <div className="max-w-[1440px] mx-auto bg-sage-mist rounded-xl px-7 py-17.5 md:py-24.75 text-center">
+        <h2 className="font-serif text-forest-ink text-heading md:text-heading-lg">
           Ready for a calmer timeline?
         </h2>
-        <p className="text-[15px] text-[#6b7280] mb-8 leading-relaxed font-light">
+        <p className="mt-3.5 mb-8.75 text-subheading font-light text-charcoal">
           Free, open source, and always will be.
           <br />
           Your feed, your rules.
@@ -17,8 +15,8 @@ export function CTA() {
 
         <InstallButton size="lg" />
 
-        <p className="mt-4 text-[12px] text-[#9ca3af]">
-          Works on Chrome &middot; Brave &middot; Microsoft Edge
+        <p className="mt-3.5 text-[12px] text-charcoal">
+          Works on Chrome · Brave · Microsoft Edge
         </p>
       </div>
     </section>
