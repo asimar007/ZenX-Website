@@ -61,7 +61,6 @@ public/
 - **Design system ("botanical greenhouse on cream paper"):** tokens live in `@theme` in `globals.css` — `forest-ink` (every CTA/heading/link), `forest-shadow` (hover), surfaces `cream-paper` → `keylime-wash` → `mint-veil` → `sage-mist` → `slate-hush`, text `charcoal`, hairlines `border-mist`. Rules: no box-shadows, no colored card borders, no hues outside the palette, serif headings weight 300 only (never bold), `rounded-xl` (14px) cards/buttons, `rounded-lg` (7px) nav items, `rounded-full` badges, 11px/600 uppercase 0.08em only for eyebrows. Slate panel is reserved for the product mockup.
 - **Browser icons on install button:** kept in their brand colours (owner's call) on the forest button.
 - **Page width:** containers are `max-w-[1440px]` so desktop gutters stay tight; sections pad `px-4 sm:px-6 lg:px-8`.
-- **ProductHunt badge:** uses `theme=neutral` to avoid PH orange.
 
 ## SEO Checklist (already implemented)
 

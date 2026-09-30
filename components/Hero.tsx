@@ -53,7 +53,7 @@ export function Hero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="ZenX - Your Twitter feed, finally peaceful | Product Hunt"
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1118847&theme=neutral&t=1776568735676"
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1118847&theme=light&t=1776568735676"
               width={250}
               height={54}
               className="hover:opacity-80 transition-opacity"

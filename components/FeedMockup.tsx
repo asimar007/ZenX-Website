@@ -5,8 +5,8 @@ import { Heart, Landmark, MessageCircle, ShieldCheck, Swords } from "lucide-reac
 const TWEETS = [
   {
     id: 1,
-    avatar: "S",
-    color: "bg-keylime-wash text-forest-ink",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    color: "",
     name: "Sarah Chen",
     handle: "@sarahchen",
     time: "2m",
@@ -32,8 +32,8 @@ const TWEETS = [
   },
   {
     id: 3,
-    avatar: "M",
-    color: "bg-slate-hush text-forest-ink",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    color: "",
     name: "Marcus Rivera",
     handle: "@marcusdev",
     time: "8m",
@@ -59,10 +59,10 @@ const TWEETS = [
   },
   {
     id: 5,
-    avatar: "A",
-    color: "bg-sage-mist text-forest-ink",
-    name: "Aiko Tanaka",
-    handle: "@aiko_t",
+    avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+    color: "",
+    name: "Emma Clarke",
+    handle: "@emmaclarke",
     time: "15m",
     text: "Café morning in Kyoto. There's something timeless about sitting by the window when it's raining outside.",
     hidden: false,
@@ -151,11 +151,15 @@ export function FeedMockup() {
               key={tweet.id}
               className="px-4.5 py-4.5 flex gap-3 border-b last:border-0"
             >
-              <div
-                className={`size-9 rounded-full flex items-center justify-center text-body font-semibold shrink-0 ${tweet.color}`}
-              >
-                {tweet.avatar}
-              </div>
+              {/* Placeholder portraits (randomuser.me) for fictional people — remote, so plain <img>. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={tweet.avatar as string}
+                alt=""
+                width={36}
+                height={36}
+                className="size-9 rounded-full object-cover shrink-0 bg-mint-veil"
+              />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 mb-1 text-[12px]">
                   <span className="text-[13px] font-semibold text-charcoal truncate">
